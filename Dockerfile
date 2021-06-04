@@ -9,17 +9,14 @@ RUN apt-get update && apt-get install -y \
 	openssl \
 	php-fpm \
 	php-mysql \
-	wordpress 
-
-#COPY ./srcs/config.sh .
-#COPY ./srcs/ssl_key/my_server.localhost.key.pem /srcs/ssl_key/
-#COPY ./srcs/ssl_key/my_server.localhost.key /srcs/ssl_key/
+	wordpress \
+	&& rm -rf /var/lib/apt/lists/* 
 
 # Changing Workdir
 WORKDIR /srcs
 ADD ./srcs . 
 
-CMD chmod 764 config.sh; ./config.sh
+CMD chmod 764 config.sh
+CMD sh /srcs/config.sh
 
 EXPOSE 443
-VOLUME ./srcs/logs

@@ -19,7 +19,7 @@
 
 #Creer une image docker
 
-	sudo docker build -t my_server.localhost
+	sudo docker build -t my_server.localhost .
 
 #demarrer l'image docker
 
