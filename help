@@ -15,7 +15,7 @@
 
 #demarrer docker
 
-	systemclt start docker
+	systemctl start docker
 
 #Creer une image docker
 
@@ -23,4 +23,4 @@
 
 #demarrer l'image docker
 
-	sudo docker run -t -p 80:80 -p 443:443 my_server.localhost
+	sudo docker run -d --name=my_server -t -p 443:443 my_server.localhost
