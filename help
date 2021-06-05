@@ -1,26 +1,34 @@
-#Generate new key and create a self signed certificate: 
-
-	openssl req \
-	-x509 \
-	-nodes \
-	-days 365 \
-	-newkey rsa:4096 \
-	-keyout my_server.localhost.key.pem \
-	-out my_server.localhost-x509.crt \
-	-subj "/C=FR/L=Paris/CN=my_server.localhost/emailAddress=melperri@student.42.fr"
-
-#desactiver nginx pour liberer le port 80
-
-	sudo service nginx stop
-
-#demarrer docker
-
-	systemctl start docker
-
-#Creer une image docker
-
-	sudo docker build -t my_server.localhost .
-
-#demarrer l'image docker
-
-	sudo docker run -d --name=my_server -t -p 443:443 my_server.localhost
+##Generate new key and create a self signed certificate: 
+#
+#	openssl req \
+#	-x509 \
+#	-nodes \
+#	-days 365 \
+#	-newkey rsa:4096 \
+#	-keyout my_server.localhost.key.pem \
+#	-out my_server.localhost-x509.crt \
+#	-subj "/C=FR/L=Paris/CN=my_server.localhost/emailAddress=melperri@student.42.fr"
+#
+##Download Wordpress
+#
+#	curl -LO https://wordpress.org/latest.tar.gz
+#
+##Generate secret-key for wordpress
+#
+#	curl -s https://api.wordpress.org/secret-key/1.1/salt/
+#
+##desactiver nginx pour liberer le port 80
+#
+#	sudo service nginx stop
+#
+##demarrer docker
+#
+#	systemctl start docker
+#
+##Creer une image docker
+#
+#	sudo docker build -t my_server.localhost .
+#
+##demarrer l'image docker
+#
+#	sudo docker run -d --name=my_server -t -p 443:443 my_server.localhost
