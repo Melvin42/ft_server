@@ -17,6 +17,10 @@
 #
 #	curl -s https://api.wordpress.org/secret-key/1.1/salt/
 #
+#Download Php-myadmin
+#
+#	wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
+#
 ##desactiver nginx pour liberer le port 80
 #
 #	sudo service nginx stop
@@ -32,3 +36,7 @@
 ##demarrer l'image docker
 #
 #	sudo docker run -d --name=my_server -t -p 443:443 my_server.localhost
+#
+#Entrer dans le conteneur
+#
+#	sudo docker exec -ti my_server bash
