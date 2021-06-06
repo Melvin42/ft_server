@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
 	php-zip \
 	php-json\
 	&& rm -rf /var/lib/apt/lists/* \
+	&& apt-get clean -y \
 	&& mkdir /var/www/my_server.localhost \
 	&& mkdir /etc/nginx/ssl \
 	&& mkdir /usr/share/phpMyAdmin \
@@ -40,6 +41,8 @@ COPY ./srcs/ssl_key/my_server.localhost-x509.crt /etc/nginx/ssl/
 COPY ./srcs/info.php /var/www/my_server.localhost/
 COPY ./srcs/wp-config.php /var/www/my_server.localhost/
 COPY ./srcs/config.inc.php /var/www/my_server.localhost/
+COPY ./srcs/wordpress/. /var/www/my_server.localhost/
+COPY ./srcs/phpMyAdmin-4.9.0.1-all-languages/. /var/www/my_server.localhost/
 
 RUN chmod 744 /srcs/config.sh
 #RUN chown -R www-data:www-data /var/www/my_server.localhost
