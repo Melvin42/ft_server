@@ -12,6 +12,7 @@ echo "FLUSH PRIVILEGES;" | mariadb -u root #-p --skip-password
 
 mariadb < /usr/share/phpMyAdmin/sql/create_tables.sql -u -root #-p --skip-password
 
+echo "CREATE DATABASE app_db;" | mariadb -u root
 echo "GRANT ALL PRIVILEGES ON phpmyadmin.* TO 'pma'@'localhost' IDENTIFIED BY 'pmapass';" | mariadb -u root #-p --skip-password
 echo "FLUSH PRIVILEGES;" | mariadb -u root #-p --skip-password
 
@@ -19,4 +20,3 @@ service php7.3-fpm start
 
 nginx -g 'daemon off;'
 
-#service nginx start

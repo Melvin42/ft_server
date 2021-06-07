@@ -40,3 +40,12 @@
 #Entrer dans le conteneur
 #
 #	sudo docker exec -ti my_server bash
+#	
+#
+#
+#
+#	#	&& chown -R $USER:$USER /var/www/my_server.localhost \
+#	&& chown -R $USER:$USER /etc/nginx/ssl \
+#	&& chmod -R 600 /etc/nginx/ssl
+#RUN chown -R www-data:www-data /var/www/my_server.localhost
+
