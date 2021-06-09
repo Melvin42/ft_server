@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y \
 	&& mv ssl_key/my_server.localhost-x509.crt /etc/nginx/ssl/ \
 	&& mv wordpress /var/www/my_server.localhost/ \
 	&& mv phpMyAdmin-5.1.1-all-languages /var/www/my_server.localhost/phpmyadmin \
+	&& mkdir -p /var/www/my_server.localhost/phpmyadmin/tmp \
 	&& chown -R www-data:www-data /var/www/ \
 	&& chmod -R 755 /var/www/ \
 	&& chmod -R 777 /var/www/my_server.localhost/phpmyadmin/tmp \
