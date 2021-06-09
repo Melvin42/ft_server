@@ -2,10 +2,9 @@ FROM debian:buster
 
 MAINTAINER melperri <melperri@student.42.fr>
 
-
 WORKDIR /home/srcs
 
-COPY ./srcs/. .
+COPY /srcs/. .
 
 RUN apt-get update && apt-get install -y \
 	nginx \
@@ -31,15 +30,13 @@ RUN apt-get update && apt-get install -y \
 	&& mv ssl_key/my_server.localhost.key.pem /etc/nginx/ssl/ \
 	&& mv ssl_key/my_server.localhost-x509.crt /etc/nginx/ssl/ \
 	&& mv wordpress /var/www/my_server.localhost/ \
-	&& mv wp-config.php /var/www/my_server.localhost/wordpress/ \
 	&& mv phpMyAdmin-5.1.1-all-languages /var/www/my_server.localhost/phpmyadmin \
-	&& mv config.inc.php /var/www/my_server.localhost/phpmyadmin/ \
 	&& chown -R www-data:www-data /var/www/ \
 	&& chmod -R 755 /var/www/ \
 	&& chmod -R 777 /var/www/my_server.localhost/phpmyadmin/tmp \
 	&& ln -s /etc/nginx/sites-available/my_server.localhost /etc/nginx/sites-enabled/ \
 	&& nginx -t
 
-ENTRYPOINT ["/srcs/config.sh"]
+ENTRYPOINT ["/home/srcs/config.sh"]
 
-EXPOSE 443
+EXPOSE 80 443
