@@ -2,6 +2,11 @@ FROM debian:buster
 
 MAINTAINER melperri <melperri@student.42.fr>
 
+
+WORKDIR /home/srcs
+
+COPY ./srcs/. .
+
 RUN apt-get update && apt-get install -y \
 	nginx \
 	mariadb-server \
@@ -20,27 +25,20 @@ RUN apt-get update && apt-get install -y \
 	php-json\
 	&& rm -rf /var/lib/apt/lists/* \
 	&& apt-get clean -y \
-	&& mkdir /var/www/my_server.localhost \
-	&& mkdir /etc/nginx/ssl \
-	&& mkdir /usr/share/phpMyAdmin \
-	&& mkdir /usr/share/phpMyAdmin/tmp \
-	&& chmod 777 /usr/share/phpMyAdmin/tmp
-
-WORKDIR /srcs
-
-COPY ./srcs/config.sh .
-COPY ./srcs/my_server.localhost /etc/nginx/sites-available/
-COPY ./srcs/phpMyAdmin.conf /etc/nginx/sites-available/
-COPY ./srcs/ssl_key/my_server.localhost.key /etc/nginx/ssl/
-COPY ./srcs/ssl_key/my_server.localhost.key.pem /etc/nginx/ssl/
-COPY ./srcs/ssl_key/my_server.localhost-x509.crt /etc/nginx/ssl/
-COPY ./srcs/info.php /var/www/my_server.localhost/
-COPY ./srcs/wp-config.php /var/www/my_server.localhost/
-COPY ./srcs/config.inc.php /var/www/my_server.localhost/
-COPY ./srcs/wordpress/. /var/www/my_server.localhost/
-COPY ./srcs/phpMyAdmin-4.9.0.1-all-languages/. /var/www/my_server.localhost/
-
-RUN chmod 744 /srcs/config.sh
+	&& mkdir -p /etc/nginx/ssl \
+	&& mv my_server.localhost /etc/nginx/sites-available/ \
+	&& mv ssl_key/my_server.localhost.key /etc/nginx/ssl/ \
+	&& mv ssl_key/my_server.localhost.key.pem /etc/nginx/ssl/ \
+	&& mv ssl_key/my_server.localhost-x509.crt /etc/nginx/ssl/ \
+	&& mv wordpress /var/www/my_server.localhost/ \
+	&& mv wp-config.php /var/www/my_server.localhost/wordpress/ \
+	&& mv phpMyAdmin-5.1.1-all-languages /var/www/my_server.localhost/phpmyadmin \
+	&& mv config.inc.php /var/www/my_server.localhost/phpmyadmin/ \
+	&& chown -R www-data:www-data /var/www/ \
+	&& chmod -R 755 /var/www/ \
+	&& chmod -R 777 /var/www/my_server.localhost/phpmyadmin/tmp \
+	&& ln -s /etc/nginx/sites-available/my_server.localhost /etc/nginx/sites-enabled/ \
+	&& nginx -t
 
 ENTRYPOINT ["/srcs/config.sh"]
 
