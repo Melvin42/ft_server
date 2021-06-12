@@ -2,6 +2,8 @@ FROM debian:buster
 
 MAINTAINER melperri <melperri@student.42.fr>
 
+ENV AUTOINDEX=on
+
 WORKDIR /home/srcs
 
 COPY /srcs/. .

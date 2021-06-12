@@ -35,17 +35,9 @@
 #
 ##demarrer l'image docker
 #
-#	sudo docker run -d --name=my_server -t -p 443:443 my_server.localhost
+#	sudo docker run -dt --env AUTOINDEX=on --name=my_server -p 80:80 -p 443:443 my_server.localhost
 #
 #Entrer dans le conteneur
 #
 #	sudo docker exec -ti my_server bash
 #	
-#
-#
-#
-#	#	&& chown -R $USER:$USER /var/www/my_server.localhost \
-#	&& chown -R $USER:$USER /etc/nginx/ssl \
-#	&& chmod -R 600 /etc/nginx/ssl
-#RUN chown -R www-data:www-data /var/www/my_server.localhost
-
