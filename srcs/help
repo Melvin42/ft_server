@@ -1,14 +1,3 @@
-##Generate new key and create a self signed certificate: 
-#
-#	openssl req \
-#	-x509 \
-#	-nodes \
-#	-days 365 \
-#	-newkey rsa:4096 \
-#	-keyout my_server.localhost.key.pem \
-#	-out my_server.localhost-x509.crt \
-#	-subj "/C=FR/L=Paris/CN=my_server.localhost/emailAddress=melperri@student.42.fr"
-#
 ##Download Wordpress
 #
 #	curl -LO https://wordpress.org/latest.tar.gz

@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install -y \
 	&& chmod -R 755 /var/www/ \
 	&& chmod -R 777 /var/www/my_server.localhost/phpmyadmin/tmp \
 	&& ln -s /etc/nginx/sites-available/my_server.localhost /etc/nginx/sites-enabled/ \
+	&& rm -f /etc/nginx/sites-enabled/default \
 	&& nginx -t
 
 ENTRYPOINT ["/home/srcs/config.sh"]

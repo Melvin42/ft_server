@@ -13,7 +13,7 @@ server {
 	ssl_certificate_key /etc/nginx/ssl/my_server.localhost.key.pem;
 
 	root	/var/www/my_server.localhost;
-	index	index.htm index.html index.php;
+	index	index.php;
 
 	server_name	my_server.localhost;
 
